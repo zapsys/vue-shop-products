@@ -22,7 +22,6 @@ $ git clone https://github.com/zapsys/vue-shop-products.git
 Entre na pasta do projeto:
 ```
 $ cd vue-shop-products
-
 ```
 E edite o arquivo **index.html** com seu editor/IDE preferida. Para visualizar diretamente abra o arquivo em seu navegador preferido.
 
