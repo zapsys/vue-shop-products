@@ -32,9 +32,10 @@
       <div v-if="cart.length" class="w-100 navbar-text ml-auto d-flex justify-content-end">
         <div class="mr-auto d-flex align-items-end flex-column bd-highlight mb-3 position-absolute">
           <div class="mb-2">
-            <span class="fw-bold bg-white">{{ currency(cartTotal) }}</span>
+            <!--<span class="fw-bold bg-white">{{ currency(cartTotal) }}</span>-->
             <button @click="displayCart= !displayCart" 
-              class="btn btn-success btn-sm ml-3" 
+              class="btn btn-sm ml-3"
+              :class="cartBtn"
               id="cartDropdown"
               aria-haspopup="true" 
               aria-expanded="false">
@@ -43,8 +44,8 @@
             </button>
           </div>
           <div v-if="displayCart" class="list-group" aria-labelledby="cartDropdown">
-            <div v-for="(item, index) in cart" :key="index" class="list-group-item d-flex justify-content-between">
-              <div>{{ item.title }}</div>
+            <div v-for="(item, index) in cart" :key="index" class="list-group-item d-flex align-items-center justify-content-between">
+              <div class="mr-3">{{ item.title }} => </div>
               <div class="ml-3 fw-bold">{{ currency(item.price) }}</div>
             </div>
           </div>
@@ -92,6 +93,7 @@
     const App = {
       data() {
         return {
+          salesBtn: 'btn-secondary',
           max: 2000,
           cart: [],
           displayLabels: true,
@@ -100,6 +102,13 @@
         }
       },
       computed: {
+        cartBtn() {
+          return {
+            'btn-secondary': this.cartTotal <= 100,
+            'btn-success': this.cartTotal > 100,
+            'btn-danger': this.cartTotal > 800
+          }
+        },
         filteredProducts() {
           return this.products.filter(item => (item.price < this.max))
         },
