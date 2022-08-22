@@ -25,21 +25,32 @@
   <!-- Google Fonts Lato import -->
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400&display=swap');
-
+    /* cart dropdown animation */
     .dropdown-enter-active,
     .dropdown-leave-active {
       transition: all .5s ease-in-out;
       transform: auto;
     }
-
     .dropdown-enter-from,
     .dropdown-leave-to {
       opacity: 0;
       transform: translate(-300px);
     }
-
     .dropdown-clip {
       overflow: hidden;
+    }
+    /* products list animation */
+    .products-enter-active, 
+    .products-leave-active {
+      transition: all .5s ease-in-out;
+    }
+    .products-enter-from {
+      opacity: 0;
+      transform: translate(300);
+    }
+    .products-leave-to {
+      opacity: 0;
+      transform: translate(-300px);
     }
   </style>
 </head>
@@ -84,6 +95,7 @@
             <span class="badge bg-dark">mostrar badges</span>
           </label>
         </div>
+        <transition-group name="products" appear>
         <div v-for="(item, index) in filteredProducts" :key="item.id" id="item-list"
           class="d-flex flex-row mb-3 align-items-center">
           <div class="col-1 m-auto">
@@ -105,11 +117,12 @@
             <p class="fw-bold mt-3">{{ currency(item.price) }}</p>
           </div>
         </div>
+      </transition-group>
       </section>
     </div>
   </div>
   <script>
-    const App = {
+    const App = Vue.createApp({
       data() {
         return {
           show: true,
@@ -167,8 +180,9 @@
             //console.log(data);
           });
       }
-    }
-    Vue.createApp(App).mount("#app")
+    })
+    
+    App.mount("#app")
   </script>
 </body>
 </html>
