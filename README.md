@@ -26,7 +26,7 @@ $ cd vue-shop-products
 E edite o arquivo **index.html** com seu editor/IDE preferida. Para visualizar diretamente abra o arquivo em seu navegador preferido.
 
 ## Demo
-[GitHub.io](https://zapsys.github.io/vue-shop-products/)
+https://zapsys.github.io/vue-shop-products/
 
 
 ## Licença
